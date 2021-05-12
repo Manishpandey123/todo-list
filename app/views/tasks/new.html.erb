@@ -1,0 +1,6 @@
+<%= form_for @tasks do |f| %>
+    Full name: <%= f.text_field :name %><br />
+    phone: <%= f.text_field :phone %><br />
+    description: <%= f.text_area :description %><br />
+    <%= f.submit %>
+<% end %>

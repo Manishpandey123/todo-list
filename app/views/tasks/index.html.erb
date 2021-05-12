@@ -1,0 +1,25 @@
+<table class="table thead-dark table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Description</th>
+            <th colspan="6"></th>
+        </tr>
+    </thead>
+ <tbody>
+     <% @tasks.all.each do |task|%>
+        <tr>
+            <td>   <%= task.name%>  </td>
+            <td>   <%= task.phone%> </td> 
+            <td>   <%= task.description%> </td>
+            <td>   <%= link_to "Edit task", edit_task_path(task) %> </td>
+            <td>   <%= link_to "Destroy", task_path(task), method: :delete, data: {confirm: "Are you sure?"} %> </td>
+            <td>   <%= link_to "Show", task_path(task) %> </td>
+        </tr>
+    <% end %>      
+ </tbody>
+</table>
+<br>
+<%= link_to "New Task", new_task_path %>
+
