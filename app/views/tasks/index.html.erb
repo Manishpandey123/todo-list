@@ -1,3 +1,4 @@
+<header class="container"><h1> Todo list</h1></header>
 <table class="table thead-dark table-bordered table-striped">
     <thead class="table-dark">
         <tr>
@@ -13,13 +14,14 @@
             <td>   <%= task.name%>  </td>
             <td>   <%= task.phone%> </td> 
             <td>   <%= task.description%> </td>
-            <td>   <%= link_to "Edit task", edit_task_path(task) %> </td>
-            <td>   <%= link_to "Destroy", task_path(task), method: :delete, data: {confirm: "Are you sure?"} %> </td>
-            <td>   <%= link_to "Show", task_path(task) %> </td>
+            <td>   <button type="button" class="btn btn-light btn-outline-info" ><%= link_to "Edit task", edit_task_path(task) %></button> </td>
+            <td>   <button type="button" class="btn btn-light btn-outline-danger"><%= link_to "Destroy", task_path(task), method: :delete, data: {confirm: "Are you sure?"} %></button> </td>
+            <td> <button type="button" class="btn btn-light btn-outline-success"><%= link_to "Show", task_path(task) %></button> </td>
         </tr>
     <% end %>      
  </tbody>
 </table>
 <br>
-<%= link_to "New Task", new_task_path %>
+
+<button type="submit" type="button" class="btn btn-light btn-outline-info"><%=  link_to "New Task", new_task_path %></button>
 

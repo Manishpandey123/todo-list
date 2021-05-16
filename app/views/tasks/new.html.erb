@@ -1,6 +1,28 @@
+<header class="container"><h1>New list</h1></header>
+<div class="container">
 <%= form_for @tasks do |f| %>
-    Full name: <%= f.text_field :name %><br />
-    phone: <%= f.text_field :phone %><br />
-    description: <%= f.text_area :description %><br />
-    <%= f.submit %>
+    <% if @tasks.errors.any? %>
+        <div class="alert alert-danger" role="alert">
+        <%= @tasks.errors.messages do |error| %>
+            <h2><%= error %></h2>
+        <% end %>
+        </div>
+    <% end %>
+    <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, autofocus: true, class: "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= f.label :phone %>
+        <%= f.text_field :phone, autofocus: true, class: "form-control" %>
+    </div>
+    <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_field :description, autofocus: true, class: "form-control" %>
+    </div>
+    <br />
+    <div class="actions">
+        <%= f.submit "Create Task", class: "btn btn-primary" %></button>
+    </div>
 <% end %>
+</div>

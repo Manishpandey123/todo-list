@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+    before_action :set_task, only: [:name, :phone, :description]
+
     def index
         binding.pry
         @tasks = Task.all
@@ -6,7 +8,7 @@ class TasksController < ApplicationController
 
     def show
         binding.pry
-        @tasks = Task.find(params[:id])
+        set_task
     end
 
     def new
@@ -14,12 +16,11 @@ class TasksController < ApplicationController
     end
 
     def edit
-        @tasks = Task.find(params[:id])
+        set_task
     end
 
     def create
-        task_param = params[:task]
-        @task = Task.new(name: task_param[:name], phone: task_param[:phone], description:task_param[:description])
+       @task = Task.new(task_params)
         if @task.save
             redirect_to tasks_path
         else
@@ -28,9 +29,8 @@ class TasksController < ApplicationController
     end
 
     def update
-        @task = Task.find(params[:id])
-        task_param = params[:task]
-        if @task.update(name: task_param[:name], phone: task_param[:phone], description: task_param[:description])
+       set_task
+        if @tasks.update(task_params)
             redirect_to tasks_path
         else
             render :edit
@@ -38,9 +38,19 @@ class TasksController < ApplicationController
     end
 
     def destroy
-        @tasks = Task.find(params[:id])
+       set_task
         if @tasks.destroy
             redirect_to tasks_path
         end
+    end
+
+    private
+
+    def set_task
+        @tasks = Task.find(params[:id])
+    end
+
+    def task_params
+        params.require(:task).permit(:name, :phone, :description)
     end
 end
